@@ -1,0 +1,109 @@
+/* footer */
+footer {
+    display: none;
+}
+
+/* main div */
+.main {
+    width: 100%;
+    padding: var(--space-4);
+    display: flex;
+    align-items: flex-start;
+    column-gap: var(--space-5);
+    margin-top: var(--space-6);
+}
+
+/* checkout form */
+.checkout-form {
+    padding: var(--space-5);
+    width: 65%;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-lg);
+}
+
+.checkout-form p {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-3);
+}
+
+.checkout-form hr {
+    margin: var(--space-5) 0;
+    border-color: var(--color-border);
+    opacity: 1;
+}
+
+.btn {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.02em;
+    transition: background-color 0.15s var(--ease);
+}
+
+.btn:hover {
+    background-color: var(--color-primary-dark);
+}
+
+@media (max-width : 800px) {
+    .main {
+        flex-direction: column;
+        margin: 0;
+        padding: var(--space-3) 0;
+    }
+    .checkout-form {
+        width: 100%;
+        margin-bottom: var(--space-4);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+/* sidebar */
+.sidebar {
+    width: 30%;
+    height: fit-content;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-lg);
+}
+
+.sidebar .item-total {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: var(--space-4);
+    color: var(--color-body);
+}
+
+.sidebar .delivery-total {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px dashed var(--color-border-strong);
+    color: var(--color-body);
+}
+
+.sidebar .total-amount {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-4) 0;
+    font-weight: 700;
+}
+
+
+@media (max-width : 800px ) {
+    .sidebar {
+        width: 100%;
+        border-radius: var(--radius-md);
+    }
+}

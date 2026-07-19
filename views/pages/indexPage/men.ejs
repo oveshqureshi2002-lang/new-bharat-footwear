@@ -1,0 +1,85 @@
+<%- layout('/layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/products.css">
+<body>
+    <div class="main mt-3">
+        <div class="filter-section-container">
+            <div class="row">
+                <!-- Filter Section -->
+                <div class="col-md-3 filter-section">
+                    <div class="filter-header">
+                        <h5>FILTERS</h5>
+                        <button class="cross-btn"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+
+                    <form action="/filtered/men" method="get">
+                        <!-- Price Filter -->
+                        <h6>Price</h6>
+
+                        <label class="form-label" for="minPrice">Min Price:</label>
+                        <input class="form-control" type="number" id="minPrice" name="minPrice" placeholder="500">
+                        <label class="form-label" for="maxPrice">Max Price:</label>
+                        <input class="form-control" type="number" id="maxPrice" name="maxPrice" placeholder="2000">
+                    
+                        <!-- Color Filter -->
+                        <h6>Color</h6>
+                        <select class="form-select" id="color" name="color">
+                            <option value="">All</option>
+                            <option value="Black">Black</option>
+                            <option value="Brown">Brown</option>
+                            <option value="White">White</option>
+                        </select>
+                    
+                        <!-- Size Filter -->
+                        <h6>Size</h6>
+                        <select class="form-select" id="size" name="size">
+                            <option value="">All</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+
+                        <input type="text" value="Men" name="category" style="display: none;">
+                    
+                        <!-- Submit Button -->
+                        <button id="filter-btn" class="btn btn-primary mt-3" type="submit">Apply Filters</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="content">
+                <div class="card-container">
+                    <h2>Men's Footwear</h2>
+                    <button class="filter-btn">FILTERS</button>
+                    <div class="cards">
+                        <% productList.forEach(function (product){%>
+                            <a href="/products/<%= product._id %>">
+                                <div class="card">
+                                    <img src="<%= product.imageUrl %>" class="card-img-top" alt="..." loading="lazy">
+                                    <div class="card-body">
+                                        <p class="card-title"><b><%= product.title %></b></p>
+                                        <p class="card-text">&#8377;<%= product.price %></p>
+                                    </div>
+                                </div>
+                            </a>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+    <script>
+        let filterBtn = document.querySelector('.filter-btn');
+        let crossBtn = document.querySelector('.cross-btn');
+        let filterContainer = document.querySelector('.filter-section-container');
+
+        filterBtn.addEventListener('click', () => {
+            filterContainer.style.left = 0;
+        });
+
+        crossBtn.addEventListener('click', () => {
+            filterContainer.style.left = '-70vw';
+        });
+    </script>
+</body>

@@ -1,0 +1,95 @@
+.about-section {
+    max-width: 800px;
+    margin: var(--space-8) auto;
+    padding: var(--space-6) var(--space-4);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.about-section h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: var(--space-4);
+}
+
+.about-section > p {
+    font-size: 1.05rem;
+    color: var(--color-muted);
+    max-width: 620px;
+    margin: 0 auto var(--space-6);
+    line-height: 1.7;
+}
+
+.single-member {
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    max-width: 340px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.single-member img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-3);
+}
+
+.single-member h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: var(--space-1);
+}
+
+.single-member p.role {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.single-member p.description {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
+.linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-top: var(--space-3);
+    font-size: 1.2rem;
+    color: var(--color-primary-dark);
+    background-color: var(--color-primary-light);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.linkedin-link:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+@media (max-width : 800px) {
+    .about-section {
+        margin: var(--space-5) var(--space-3);
+        padding: var(--space-5) var(--space-3);
+    }
+    .about-section h1 {
+        font-size: 1.8rem;
+    }
+}

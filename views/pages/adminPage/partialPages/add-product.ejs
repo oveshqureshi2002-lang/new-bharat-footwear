@@ -1,0 +1,110 @@
+<h1>Add product</h1>
+
+<div class="product-form">
+    <form action="/add-product" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label">Product Title</label>
+                <input type="text" class="form-control" name="title" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                    Add product title!
+                </div>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label">Product Image</label>
+                <input type="file" class="form-control" name="imageUrl" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                    Add product Image!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="" class="form-label">Category</label>
+                <select class="form-select" name="category" id="category" required>
+                    <option >Select Category</option>
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                    <option value="Kids">Kids</option>
+                </select>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                    Add product category!
+                </div>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="categories" class="form-label">Categories</label>
+                <select class="form-select" name="categories" id="categories">
+                    <option value="sneakers">Sneakers</option>
+                    <option value="boots">Boots</option>
+                    <option value="sandals">Sandals</option>
+                    <option value="sport shoes">Sport shoes</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="color" class="form-label">Color</label>
+                <select class="form-select" name="color" id="color" required>
+                    <option>Select Shoe Color</option>
+                    <option value="White">White</option>
+                    <option value="Black">Black</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Pink">Pink</option>
+                </select>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                    Add product color!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="" class="form-label">Price</label>
+                <input type="number" class="form-control" name="price" min="100" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                    Add product price!
+                </div>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="" class="form-label">Size</label>
+                <input type="number" class="form-control" name="size" min="6" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                    Add product size!
+                </div>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label class="form-label" for="quantity">Quantity</label>
+                <input class="form-control" type="number" name="quantity" min="10" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Description</label>
+            <textarea type="text" class="form-control" name="description" required></textarea>
+            <div class="valid-feedback">
+                Looks Good!
+            </div>
+            <div class="invalid-feedback">
+                Add product description!
+            </div>
+        </div>
+        <div class="mb-1">
+            <input type="submit" class="btn" value="Add product">
+        </div>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+<% layout('layouts/boilerplate') %>
+
+<link rel="stylesheet" href="/stylesheets/wishlist.css">
+
+<body>
+    <div class="main">
+        <h2>My Wishlist</h2>
+        <% if(wishlist && wishlist.products.length) { %>
+            <div class="cards">
+                <% for( item of wishlist.products) { %>
+                    <div class="card">
+                        <a href="/products/<%= item.productId._id %>">
+                            <img loading="lazy" src="<%= item.productId.imageUrl %>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-title"><b><%= item.productId.title %></b></p>
+                                <p class="card-text">&#8377;<%= item.productId.price %></p>
+                            </div>
+                        </a>
+                        <p class="card-text card-btn"><a href="/wishlist/remove/<%= item.productId._id %>">Remove</a></p>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="empty">
+                <img loading="lazy" src="https://res.cloudinary.com/dp7o3qopm/image/upload/v1727189481/cart-icon_qnrb9j.webp" alt="">
+                <h4>Your Wishlist is empty</h4>
+                <button><a href="/">Start Shopping</a></button>
+            </div>
+        <% } %>
+    </div>
+</body>

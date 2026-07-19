@@ -1,0 +1,68 @@
+<%- layout('/layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/adminPage.css">
+
+<body>
+    <p class="admin-breadcrumb mt-2 ps-2"><a href="/">Home</a> <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i> <a href="/profile/<%= currUser._id %>">Profile</a> <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i> <span class="current">Admin Dashboard</span></p>
+    <button class="sidebar-btn" type="button"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    <div class="main">
+        <div class="sidebar">
+            <ul>
+                <li><a class="sidebar-link active" data-target="dashboard" href=""><i class="fa-solid fa-gauge"></i>Dashboard</a></li>
+                <li><a class="sidebar-link" data-target="product-list" href=""><i class="fa-solid fa-shoe-prints"></i>Product List</a></li>
+                <li><a class="sidebar-link" data-target="add-product" href=""><i class="fa-solid fa-circle-plus"></i>Add Product</a></li>
+                <li><a class="sidebar-link" data-target="order-list" href=""><i class="fa-solid fa-cart-shopping"></i>Order List</a></li>
+                <li><a class="sidebar-link" data-target="all-user" href=""><i class="fa-solid fa-users"></i>All User</a></li>
+            </ul>
+            <button class="sidebar-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- Main content container -->
+        <div class="main-container">
+            <div class="profile-content" id="main-content">
+                <%- include('partialPages/dashboard') %>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            let target = this.getAttribute('data-target');
+            console.log(target);
+
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+
+            fetch(`/${target}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-content').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading content:', error));
+            });
+        });
+    </script>
+
+    <script>
+        let sidebarBtn = document.querySelector('.sidebar-btn');
+        let sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+        let sidebar = document.querySelector('.sidebar');
+        let sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        sidebarBtn.addEventListener('click', () => {
+            sidebar.style.right = 0;
+        });
+
+        sidebarCloseBtn.addEventListener('click', () => {
+            sidebar.style.right = '-60vw'
+        });
+
+        sidebarLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                sidebar.style.right = '-60vw';
+            });
+        })
+    </script>
+</body>

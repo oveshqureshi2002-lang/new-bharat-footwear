@@ -1,0 +1,52 @@
+<div class="order-container">
+    <h3>All Orders</h3>
+    <% if(orderList.length) { %>
+        <div class="order-list">
+            <div class="card-group">
+                <% orderList.reverse().forEach(order => { %>
+                    <div class="order mb-3" data-order-id="<%= order._id %>">
+                        <div class="order-summary">
+                            <div class="order-summary-left">
+                                <span class="order-id">Order #<%= order._id.toString().slice(-8).toUpperCase() %></span>
+                                <span class="order-date"><%= order.date.toString().split(' ').slice(0,4).join(' ') %></span>
+                            </div>
+                            <div class="order-summary-right">
+                                <span class="order-status-badge <%= order.orderStatus.toLowerCase() %>"><%= order.orderStatus %></span>
+                                <span class="order-total">&#8377;<%= order.totalPrice %></span>
+                            </div>
+                        </div>
+                        <% order.items.forEach(item => { %>
+                            <% if(item && item.product) { %>
+                                <div class="card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4" id="img-container">
+                                          <img src="<%= item.product.imageUrl %>" class="img-fluid" alt="..." loading="lazy">
+                                        </div>
+                                        <div class="col-md-8">
+                                          <div class="card-body">
+                                            <h5 class="card-title"><%= item.product.title %></h5>
+                                            <p class="card-text">Size : <%= item.product.size %> &nbsp;|&nbsp; Qty : <%= item.quantity %></p>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if(order.orderStatus === 'Delivered') { %>
+                                    <div class="review">
+                                        <p class="text-body-secondary">Rate and Review</p>
+                                        <a href="/review/<%= item.product._id %>">Write Review</a>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                        <% }); %>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="empty">
+            <img loading="lazy" src="https://res.cloudinary.com/dp7o3qopm/image/upload/v1727189481/cart-icon_qnrb9j.webp" alt="">
+            <h4>No orders yet</h4>
+            <button><a href="/">Start Shopping</a></button>
+        </div>
+    <% } %>
+</div>

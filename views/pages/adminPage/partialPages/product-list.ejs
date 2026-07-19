@@ -1,0 +1,50 @@
+<h1>Product list</h1>
+
+<% if(productList.length) { %>
+    <div class="list-container mt-2">
+        <table class="table table-striped">
+            <thead class="table-primary">
+                <tr>
+                    <th>Product</th>
+                    <th>Product ID</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Sale</th>
+                    <th>Stock</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: start;">
+                <% for(product of productList) { %>
+                    <tr>
+                        <td><img loading="lazy" src="<%= product.imageUrl %>" alt="">&nbsp;<%= product.title %></td>
+                        <td class="id-cell" title="<%= product._id %>"><%= product._id %></td>
+                        <td>&#8377;<%= product.price %></td>
+                        <td><%= product.quantity %></td>
+                        <td>50</td>
+                        <% if(product.quantity >= 1) { %>
+                            <td><span class="admin-badge success">Available</span></td>
+                        <% } else { %>
+                            <td><span class="admin-badge danger">Out of Stock</span></td>
+                        <% } %>
+                        <td>
+                            <div class="row-actions">
+                                <a class="row-action-btn view" href="/products/<%= product._id %>" title="View"><i class="fa-solid fa-eye"></i></a>
+                                <a class="row-action-btn edit" href="/<%= product._id %>/edit" title="Edit"><i class="fa-solid fa-pen"></i></a>
+                                <form action="/product/<%= product._id %>?_method=DELETE" method="post">
+                                    <button class="row-action-btn delete" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<% } else { %>
+    <div class="admin-empty">
+        <i class="fa-solid fa-shoe-prints"></i>
+        <h5>No products yet</h5>
+        <p>Products you add will show up here.</p>
+    </div>
+<% } %>

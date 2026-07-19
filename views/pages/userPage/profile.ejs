@@ -1,0 +1,112 @@
+<%- layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/profile.css">
+<body>
+    <p class="mt-2 ps-2"><a href="/">Home</a> > Profile</p>
+    <button class="sidebar-btn" type="button"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    <div class="main">
+        <div class="sidebar">
+            <ul>
+                <li><a class="sidebar-link" data-target="account-main" href="/account-main">Account</a></li>
+                <% if(currUser.role === 'admin') { %>
+                    <li><a href="/admin">Admin Dashboard</a></li>
+                <% } %>
+                <% if(currUser.role === 'user') { %>
+                    <li><a class="sidebar-link" data-target="orders" href="/orders">Orders</a></li>
+                <% } %>
+                <li><a href="">Setting</a></li>
+                <li><a href="/logout">LOG OUT</a></li>
+            </ul>
+            <button class="sidebar-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <!-- Main content container ---- -->
+        <div class="main-container">
+            <div class="profile-content" id="main-content">
+                <%- include('partialPages/acount-main') %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Account Overview stats (Total Orders / Wishlist Items) are not part of the
+        // profile payload, so they're filled in by reusing the existing /orders and
+        // /wishlist routes client-side. This has to be re-run after every AJAX swap
+        // of #main-content, since injected <script> tags never execute on innerHTML.
+        function loadAccountStats() {
+            let orderStatEl = document.getElementById('stat-orders');
+            let wishlistStatEl = document.getElementById('stat-wishlist');
+
+            if (orderStatEl) {
+                fetch('/orders')
+                    .then(res => res.text())
+                    .then(html => {
+                        let doc = new DOMParser().parseFromString(html, 'text/html');
+                        let ids = new Set();
+                        doc.querySelectorAll('.order[data-order-id]').forEach(el => ids.add(el.dataset.orderId));
+                        let valueEl = orderStatEl.querySelector('.stat-value');
+                        if (valueEl) valueEl.textContent = ids.size;
+                    })
+                    .catch(() => {
+                        let valueEl = orderStatEl.querySelector('.stat-value');
+                        if (valueEl) valueEl.textContent = '0';
+                    });
+            }
+
+            if (wishlistStatEl) {
+                fetch('/wishlist')
+                    .then(res => res.text())
+                    .then(html => {
+                        let doc = new DOMParser().parseFromString(html, 'text/html');
+                        let count = doc.querySelectorAll('.cards .card').length;
+                        let valueEl = wishlistStatEl.querySelector('.stat-value');
+                        if (valueEl) valueEl.textContent = count;
+                    })
+                    .catch(() => {
+                        let valueEl = wishlistStatEl.querySelector('.stat-value');
+                        if (valueEl) valueEl.textContent = '0';
+                    });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAccountStats);
+
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            let target = this.getAttribute('data-target');
+            // console.log(target);
+
+            fetch(`/${target}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('main-content').innerHTML = data;
+                if (target === 'account-main') {
+                    loadAccountStats();
+                }
+            })
+            .catch(error => console.error('Error loading content:', error));
+            });
+        });
+    </script>
+
+    <script>
+        let sidebarBtn = document.querySelector('.sidebar-btn');
+        let sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+        let sidebar = document.querySelector('.sidebar');
+        let sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        sidebarBtn.addEventListener('click', () => {
+            sidebar.style.right = 0;
+        });
+
+        sidebarCloseBtn.addEventListener('click', () => {
+            sidebar.style.right = '-60vw'
+        });
+
+        sidebarLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                sidebar.style.right = '-60vw';
+            });
+        })
+
+    </script>
+</body>

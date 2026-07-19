@@ -1,0 +1,97 @@
+<div class="profile-container">
+    <div class="user-profile">
+        <img style="color: white; text-align: center;" src="<%= user.image %>" alt="User Profile" loading="lazy" >
+        <div class="user-profile-data">
+            <p class="profile-name"><b><%= user.name %></b></p>
+            <p class="profile-username">@<%= user.username %></p>
+        </div>
+        <a href="/profile/<%= currUser._id %>/update"><button>Edit Profile</button></a>
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-tile" id="stat-orders">
+            <div class="stat-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+            <div class="stat-text">
+                <span class="stat-value">&mdash;</span>
+                <span class="stat-label">Total Orders</span>
+            </div>
+        </div>
+        <div class="stat-tile" id="stat-wishlist">
+            <div class="stat-icon"><i class="fa-regular fa-heart"></i></div>
+            <div class="stat-text">
+                <span class="stat-value">&mdash;</span>
+                <span class="stat-label">Wishlist Items</span>
+            </div>
+        </div>
+        <div class="stat-tile">
+            <div class="stat-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="stat-text">
+                <span class="stat-value"><%= user.address ? 1 : 0 %></span>
+                <span class="stat-label">Saved Address</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="info-card">
+            <h3>Personal Information</h3>
+            <ul class="info-list">
+                <li>
+                    <div class="info-icon"><i class="fa-regular fa-user"></i></div>
+                    <div class="info-text">
+                        <span class="info-label">Full Name</span>
+                        <span class="info-value"><%= user.name || 'Not added' %></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info-icon"><i class="fa-solid fa-at"></i></div>
+                    <div class="info-text">
+                        <span class="info-label">Username</span>
+                        <span class="info-value"><%= user.username %></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="info-text">
+                        <span class="info-label">Email</span>
+                        <span class="info-value"><%= user.email %></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-text">
+                        <span class="info-label">Phone</span>
+                        <span class="info-value"><%= user.contact ? ('+91 ' + user.contact) : 'Not added' %></span>
+                    </div>
+                </li>
+                <% if(currUser.role === 'admin') { %>
+                    <li>
+                        <div class="info-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="info-text">
+                            <span class="info-label">Role</span>
+                            <span class="info-value">Admin</span>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h3>Address</h3>
+            <% if(user.address) { %>
+                <div class="address-block">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <p><%= user.address %></p>
+                </div>
+            <% } else { %>
+                <div class="address-empty">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <p>No address added yet.</p>
+                </div>
+            <% } %>
+            <a class="btn-secondary" href="/profile/<%= currUser._id %>/update">
+                <i class="fa-solid fa-pen"></i> <%= user.address ? 'Edit Address' : 'Add Address' %>
+            </a>
+        </div>
+    </div>
+</div>
