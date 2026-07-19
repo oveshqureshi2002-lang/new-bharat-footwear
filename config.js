@@ -12,7 +12,7 @@ const required = [
     'CLOUD_API_KEY',
     'CLOUD_API_SECRET',
     'PAYU_API_KEY',
-    'PAYU_SALT_256BIT',
+    'PAYU_SALT',
 ];
 
 const missing = required.filter((key) => !process.env[key]);
@@ -29,7 +29,7 @@ module.exports = {
     port: process.env.PORT || 8080,
     // Falls back to the current production URL so behavior is unchanged
     // until BASE_URL is explicitly set per environment.
-    baseUrl: process.env.BASE_URL || 'https://new-bharat-footwear.onrender.com',
+    baseUrl: process.env.BASE_URL || 'http://localhost:8080',
 
     dbUrl: process.env.DB_URL,
     sessionSecret: process.env.SECRET,
@@ -43,7 +43,7 @@ module.exports = {
 
     payu: {
         key: process.env.PAYU_API_KEY,
-        salt: process.env.PAYU_SALT_256BIT,
+        salt: process.env.PAYU_SALT,
         // 'TEST' or 'LIVE' — defaults to 'TEST' to match prior hardcoded behavior.
         mode: process.env.PAYU_MODE || 'TEST',
     },
