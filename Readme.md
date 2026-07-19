@@ -2,7 +2,7 @@
 
 **New Bharat Footwear** is a full-stack, server-rendered e-commerce platform for browsing and purchasing footwear online. It supports product browsing and filtering, wishlists, cart management, checkout with Cash on Delivery or online payment via **PayU**, order tracking, product reviews, and a role-based admin dashboard for managing products, orders, and users.
 
-🔗 Live demo: https://new-bharat-footwear.onrender.com/
+🔗 Live demo: https://new-bharat-footwear-qnbt.onrender.com/
 
 ---
 
