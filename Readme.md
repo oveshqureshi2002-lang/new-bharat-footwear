@@ -350,7 +350,7 @@ This project declares an **ISC License** in `package.json`, but no standalone `L
 
 ## Author
 
-**Prince Mali** — Full Stack Developer (solo project)
+**Owais Qureshi** — Full Stack Developer (solo project)
 
-- Email: maliprince909@gmail.com
-- GitHub: [https://github.com/Prince-Mali](https://github.com/Prince-Mali)
+- Email: oveshqureshi2002@gmail.com
+- GitHub: [https://github.com/oveshqureshi2002-lang](https://github.com/oveshqureshi2002-lang).
